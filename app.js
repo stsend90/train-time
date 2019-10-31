@@ -53,11 +53,11 @@ database.ref().on("child_added", function(childSnapShot) {
       diffTime = moment().diff(moment(convertedTime), "minutes"),
       timeRemain = diffTime % frequency,
       minAway = frequency - timeRemain,
-      nextTrain = moment().add(minAway, "minutes").format("HH:mm");             
-    //  console.log(convertedTime);
-    //  console.log(diffTime);
-    //  console.log(timeRemain);
-    //  console.log(minAway);
+      nextTrain = moment(moment().add(minAway, "minutes")).format("HH:mm");             
+      // console.log(convertedTime);
+      // console.log(diffTime);
+      // console.log(timeRemain);
+      // console.log(minAway);
       
   var newRow = $("<tr>").append(
     $("<td>").text(trName),
