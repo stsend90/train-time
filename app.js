@@ -12,16 +12,16 @@ let firebaseConfig = {
 
   let database = firebase.database();
 
-$("#add-train-btn").on("click", function(e) {
-  e.preventDefault();
+$("#add-train-btn").on("click", function(event) {
+  event.preventDefault();
 
-  var trainName = $("#train-name-input").val().trim(),
+  var trName = $("#train-name-input").val().trim(),
       destination = $("#destination-input").val().trim(),
       startTrain = moment($("#start-train-input").val().trim(), "HH:mm").format("HH:mm");
       frequency = $("#frequency-rate-input").val().trim(),
       
       newTrain = {
-        name: trainName,
+        name: trName,
         destination: destination, 
         firstTrain: startTrain,
         frequency: frequency
@@ -44,7 +44,7 @@ $("#add-train-btn").on("click", function(e) {
 database.ref().on("child_added", function(childSnapShot) {
  // console.log(childSnapShot.val());
 
-  var trainName = childSnapShot.val().name,
+  var trName = childSnapShot.val().name,
       destination = childSnapShot.val().destination,
       startTrain = childSnapShot.val().firstTrain,
       frequency = childSnapShot.val().frequency;
@@ -60,7 +60,7 @@ database.ref().on("child_added", function(childSnapShot) {
     //  console.log(minAway);
       
   var newRow = $("<tr>").append(
-    $("<td>").text(trainName),
+    $("<td>").text(trName),
     $("<td>").text(destination),
     $("<td>").text(frequency),
     $("<td>").text(nextTrain),
